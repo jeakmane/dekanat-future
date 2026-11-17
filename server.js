@@ -18,6 +18,10 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 
 const app = express();
+// За reverse-прокси (Railway/Render/Amvera/Caddy) HTTPS терминируется на проксе.
+// Без trust proxy express-session не выставляет Secure-cookie: соединение до
+// приложения идёт по HTTP, и сессия «не сохраняется» после входа.
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'data', 'db.json');
 
