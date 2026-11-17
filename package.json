@@ -1,0 +1,17 @@
+{
+  "name": "dekanat-future",
+  "version": "1.0.0",
+  "description": "Цифровой деканат будущего — концепт личного кабинета студента (прототип для конкурса)",
+  "main": "server.js",
+  "scripts": {
+    "seed": "node seed.js",
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
+}
