@@ -21,6 +21,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'data', 'db.json');
 
+// Автосидирование: на свежем деплое (Render/Railway/VPS) базы ещё нет —
+// создаём вымышленные данные при первом старте, руками ничего не нужно.
+if (!fs.existsSync(DB_FILE)) {
+  console.log('[init] data/db.json не найден — генерирую демо-данные...');
+  require('child_process').execSync('node seed.js', { cwd: __dirname, stdio: 'inherit' });
+}
+
 // ---------- «БД»: JSON-файл с записью на диск ----------
 let db;
 function loadDb() {
